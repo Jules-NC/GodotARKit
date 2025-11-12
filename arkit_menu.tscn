@@ -1,0 +1,210 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmmmwgdvt6ymb"]
+
+[ext_resource type="Script" uid="uid://cxw08rg811rhy" path="res://addons/godotarkit/arkit_menu.gd" id="1_0sq1r"]
+
+[node name="HBoxContainer2" type="HBoxContainer"]
+clip_contents = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 352.0
+grow_horizontal = 2
+script = ExtResource("1_0sq1r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ServerMenu" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/ServerMenu"]
+layout_mode = 2
+text = "Port:"
+
+[node name="ServerPort" type="LineEdit" parent="VBoxContainer/ServerMenu"]
+layout_mode = 2
+text = "11111"
+max_length = 5
+emoji_menu_enabled = false
+
+[node name="StartServer" type="CheckBox" parent="VBoxContainer/ServerMenu"]
+layout_mode = 2
+text = "Enable server"
+alignment = 1
+
+[node name="ErrorDisplay" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "DISABLED"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Subjects" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Subjects:"
+
+[node name="SubjectsList" type="ItemList" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+allow_search = false
+auto_height = true
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SubjectInfos" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/SubjectInfos"]
+layout_mode = 2
+text = "Subject infos:"
+
+[node name="DeviceIDContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="DeviceIDTitle" type="Label" parent="VBoxContainer/SubjectInfos/DeviceIDContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Device ID:"
+horizontal_alignment = 1
+
+[node name="DeviceIDValue" type="Label" parent="VBoxContainer/SubjectInfos/DeviceIDContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "DC253441-8F7A-449C-9702-37066581EF6E"
+horizontal_alignment = 1
+
+[node name="SubjectNameContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]
+layout_mode = 2
+
+[node name="SubjectNameTitle" type="Label" parent="VBoxContainer/SubjectInfos/SubjectNameContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Subject name:"
+horizontal_alignment = 1
+
+[node name="SubjectNameValue" type="Label" parent="VBoxContainer/SubjectInfos/SubjectNameContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "No4242"
+horizontal_alignment = 1
+
+[node name="FrameContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]
+layout_mode = 2
+
+[node name="FrameTitle" type="Label" parent="VBoxContainer/SubjectInfos/FrameContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Frame:"
+horizontal_alignment = 1
+
+[node name="FrameValue" type="Label" parent="VBoxContainer/SubjectInfos/FrameContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "3249391"
+horizontal_alignment = 1
+
+[node name="SubFrameContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]
+layout_mode = 2
+
+[node name="SubFrameTitle" type="Label" parent="VBoxContainer/SubjectInfos/SubFrameContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "SubFrame:"
+horizontal_alignment = 1
+
+[node name="SubFrameValue" type="Label" parent="VBoxContainer/SubjectInfos/SubFrameContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "1044197120"
+horizontal_alignment = 1
+
+[node name="FPSContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]
+layout_mode = 2
+
+[node name="FPSTitle" type="Label" parent="VBoxContainer/SubjectInfos/FPSContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "FPS:"
+horizontal_alignment = 1
+
+[node name="FPSValue" type="Label" parent="VBoxContainer/SubjectInfos/FPSContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "60"
+horizontal_alignment = 1
+
+[node name="DenominatorContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]
+layout_mode = 2
+
+[node name="DenominatorTitle" type="Label" parent="VBoxContainer/SubjectInfos/DenominatorContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Denominator:"
+horizontal_alignment = 1
+
+[node name="DenominatorValue" type="Label" parent="VBoxContainer/SubjectInfos/DenominatorContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "1"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="BlendshapesMenu" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="BlendshapesMenu"]
+layout_mode = 2
+text = "Blendshapes of selected subject"
+horizontal_alignment = 1
+
+[node name="BlendshapeInfo" type="HBoxContainer" parent="BlendshapesMenu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="BlendshapesMenu/BlendshapeInfo"]
+custom_minimum_size = Vector2(80, 15.15)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 11
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="BlendshapesMenu/BlendshapeInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "EyeBlinkleft:"
+
+[node name="BlendshapeContainer" type="VFlowContainer" parent="BlendshapesMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 0
+
+[connection signal="text_submitted" from="VBoxContainer/ServerMenu/ServerPort" to="." method="_on_server_port_text_submitted"]
+[connection signal="toggled" from="VBoxContainer/ServerMenu/StartServer" to="." method="_on_start_server_toggled"]
+[connection signal="item_selected" from="VBoxContainer/SubjectsList" to="." method="_on_subjects_list_item_selected"]

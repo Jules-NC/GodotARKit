@@ -37,7 +37,6 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = "DISABLED"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -114,7 +113,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
-text = "3249391"
+text = "3819139"
 horizontal_alignment = 1
 
 [node name="SubFrameContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]
@@ -130,7 +129,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
-text = "1044197120"
+text = "1059730048"
 horizontal_alignment = 1
 
 [node name="FPSContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]

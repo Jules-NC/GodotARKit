@@ -144,7 +144,7 @@ func start() -> void:
 	push_warning("Server Started!!")
 	var err: Error = _server.listen(_port)
 	if err != OK:
-		push_error("Failed to listen on port %d" % _port)
+		push_error("Failed to listen on port, check that the editor panel of GodotARKit has no server already enabled, thus already listening to the port %d" % _port)
 
 
 func change_port(new_port: int) -> void:

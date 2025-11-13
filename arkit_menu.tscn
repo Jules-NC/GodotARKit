@@ -38,6 +38,14 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 
+[node name="ErrorDisplay2" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "STOP THE SERVER BEFORE LAUNCHING THE GAME (Same port)"
+autowrap_mode = 2
+
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
@@ -50,13 +58,14 @@ unique_name_in_owner = true
 layout_mode = 2
 allow_search = false
 auto_height = true
+item_count = 1
+item_0/text = "No4242"
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="SubjectInfos" type="VBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -113,7 +122,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
-text = "3819139"
+text = "4371717"
 horizontal_alignment = 1
 
 [node name="SubFrameContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]
@@ -129,7 +138,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
-text = "1059730048"
+text = "1065324416"
 horizontal_alignment = 1
 
 [node name="FPSContainer" type="HBoxContainer" parent="VBoxContainer/SubjectInfos"]
@@ -169,13 +178,22 @@ layout_mode = 2
 
 [node name="BlendshapesMenu" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="BlendshapesMenu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BlendshapesMenu"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BlendshapesMenu/HBoxContainer"]
 layout_mode = 2
 text = "Blendshapes of selected subject"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="BlendshapesMenu/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "STOP THE SERVER BEFORE LAUNCHING THE GAME"
 horizontal_alignment = 1
 
 [node name="BlendshapeInfo" type="HBoxContainer" parent="BlendshapesMenu"]

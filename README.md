@@ -5,6 +5,8 @@ GodotARKit is a Godot 4 plugin designed to stream real-time facial motion captur
 
 The blendshapes can be connected to your 3D model to animate them in real-time.
 
+https://github.com/user-attachments/assets/45f041b1-7f9d-4cc0-8c7c-4ef02c20cb1f
+
 # Features
 - **Editor integration**: Built-in editor panel accessible from the bottom panel provides real-time monitoring of connected devices, live blendshape value visualization, packet frame information, and error status display.
 - **Seamless access**: All the blendshapes, from an autoload.

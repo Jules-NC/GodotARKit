@@ -9,7 +9,6 @@ The blendshapes can be connected to your 3D model to animate them in real-time.
 - **Editor integration**: Built-in editor panel accessible from the bottom panel provides real-time monitoring of connected devices, live blendshape value visualization, packet frame information, and error status display.
 - **Seamless access**: All the blendshapes, from an autoload.
 
----
 # Setup
 
 1. use your phone to create a UDP server (typically via LiveLinkFace), make your target your godot computer **LOCAL** IP. Use the port you want
@@ -20,7 +19,6 @@ The blendshapes can be connected to your 3D model to animate them in real-time.
 
 ![](./docs/godot_arkit_2.png)
 
----
 # Example
 #### Animate your MeshInstance3D with one loop
 > This is the code used for the video demo
@@ -93,7 +91,6 @@ static func set_blend_shape(mesh_instance: MeshInstance3D, blendshape_name: Stri
 	mesh_instance.set_blend_shape_value(blend_shape_idx, blendshape_value)
 ```
 
----
 # Documentation
 #### Blendshapes String enum: 
 ```gdscript
@@ -170,8 +167,6 @@ enum BlendShape {
 }
 ```
 
----
-
 # Troubleshooting
 #### Device Not Connecting
 - Verify same Wi-Fi network
@@ -185,9 +180,8 @@ enum BlendShape {
 # Credits
 Developed for the Godot community by: **Jules Neghnagh--Chenavas**
 
-## Contributing
+# Contributing
 Yes, I'm sure I made errors, especially on the UI. Didn't even test with more than one device.
 
-
-## License
+# License
 This addon has been released under the **MIT License**

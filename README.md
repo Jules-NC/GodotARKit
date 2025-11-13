@@ -11,17 +11,18 @@ The blendshapes can be connected to your 3D model to animate them in real-time.
 
 # Setup
 
-1. use your phone to create a UDP server (typically via LiveLinkFace), make your target your godot computer **LOCAL** IP. Use the port you want
-2. Open the addon bottom panel, select your port, enable the server
+1. use your phone to create a UDP server (typically via LiveLinkFace), make your target your godot computer **LOCAL** IP. Use the port you want.
+2. Open the addon bottom panel, select your port, enable the server.
 ![](./docs/godot_arkit_0.png)
-3. Your device should appear in the subjects list automatically and show you the result
-4. Stop the server when hitting play, you may want to start it in code, in this case the current one may already listen to the same port. This tool is just here to help you debug
+3. Your device should appear in the subjects list automatically and show you the result.
+4. Stop the server when hitting play, you may want to start it in code, in this case the current one may already listen to the same port. This tool is just here to help you debug.
 
 ![](./docs/godot_arkit_2.png)
 
 # Example
-#### Animate your MeshInstance3D with one loop
-> This is the code used for the video demo
+#### Animate your MeshInstance3D with one loop.
+> This is the code used for the video demo.
+
 ```gdscript
 extends Node3D
 
@@ -169,19 +170,19 @@ enum BlendShape {
 
 # Troubleshooting
 #### Device Not Connecting
-- Verify same Wi-Fi network
-- Check computer's local IP address
-- Ping yourself both ways
-- Ensure port matches (default: 11111)
-- Check firewall UDP settings
-- Verify "Start Server" is enabled
-- Check if the addon creator is to blame
+- Verify same Wi-Fi network.
+- Check computer's local IP address.
+- Ping yourself both ways.
+- Ensure port matches (default: 11111).
+- Check firewall UDP settings.
+- Verify "Start Server" is enabled.
+- Check if the addon creator is to blame.
 
 # Credits
-Developed for the Godot community by: **Jules Neghnagh--Chenavas**
+Developed for the Godot community by: **Jules Neghnagh--Chenavas**.
 
 # Contributing
 DO IT! I surely made errors, especially on the UI. Didn't even test with more than one device. It's also my first plugin.
 
 # License
-This addon has been released under the **MIT License**
+This addon has been released under the **MIT License**.

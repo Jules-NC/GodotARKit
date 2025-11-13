@@ -14,22 +14,40 @@ The blendshapes can be connected to your 3D model to animate them in real-time.
 
 1. use your phone to create a UDP server (typically via LiveLinkFace), make your target your godot computer **LOCAL** IP. Use the port you want
 2. Open the addon bottom panel, select your port, enable the server
+![](./docs/godot_arkit_0.png)
 3. Your device should appear in the subjects list automatically and show you the result
+4. Stop the server when hitting play, you may want to start it in code, in this case the current one may already listen to the same port. This tool is just here to help you debug
 
+![](./docs/godot_arkit_2.png)
 
+---
+# Example
 #### Animate your MeshInstance3D with one loop
+> This is the code used for the video demo
 ```gdscript
-class_name GodotARKitExample extends Node3D
+extends Node3D
 
-var your_mesh_instance: MeshInstance3D # Your face
+@onready var face_mesh_instance: MeshInstance3D = $Armature/Skeleton3D/face
+@onready var skeleton: Skeleton3D = $Armature/Skeleton3D
+@export var neck_bone_name:String = 'head'
+@onready var anim_tree: AnimationTree = $AnimationTree
+
+var neck_bone:int
+var base_neck_rot:Quaternion
+
 
 func _init() -> void:
 	# Start the server on the port of your choice
 	ARKitSingleton._server.change_port(11111)
 	ARKitSingleton._server.start()
 
-func _process(delta: float) -> void:
-	var eye_blink_left: float
+
+func _ready() -> void:
+	neck_bone = skeleton.find_bone(neck_bone_name)
+	base_neck_rot = skeleton.get_bone_pose_rotation(neck_bone)
+
+
+func _process(_delta: float) -> void:
 	var first_subject: ARKitSubject
 
 	# Check if at least one subject (ARKit UDP service screaming at you) exists
@@ -46,26 +64,37 @@ func _process(delta: float) -> void:
 		var blendshape_name: String = ARKitServer.blendshape_string_mapping[i]
 		var blendshape_value: float = first_subject.packet.blendshapes_array[i]
 
-		# THIS IS JUST A RAPID EXAMPLE SHOWING YOU HOW TO USE IT.
-		# There are 61 blendshapes, but 3 of them are for the head rotation,
-		# and 6 are dedicated to the eyes rotation.
-		# One of them is the tongue.
-		# You will generally use:
-		# - One head with many of those blendshapes,
-		# - One tongue,
-		# - One mouth interior,
-		# - One pair of eyes,
-		# - Use the head rotation directly in the skeleton.
-		# So in the end, your code will be really different, but you have the basics covered.
-		set_blend_shape(your_mesh_instance, blendshape_name, blendshape_value)
+
+		# The classic 52 blendshapes of the face
+		if i <= ARKitServer.BlendShape.TONGUE_OUT:
+			set_blend_shape(face_mesh_instance, blendshape_name, blendshape_value)
+		else:
+			break
+		
+		# The blendshapes related to the head rotation
+		var head_yaw: float = first_subject.packet.blendshapes_array[ARKitServer.BlendShape.HEAD_YAW]
+		var head_pitch: float = first_subject.packet.blendshapes_array[ARKitServer.BlendShape.HEAD_PITCH]
+		var head_roll: float = first_subject.packet.blendshapes_array[ARKitServer.BlendShape.HEAD_ROLL]
+		skeleton.set_bone_pose_rotation(neck_bone, base_neck_rot * Quaternion.from_euler(Vector3(-head_pitch, -head_yaw, -head_roll)))
+	
+		# The ones related to eyes rotation (It's hacky here, both eyes behave the same, so you can't be crosse-eyed). Do better
+		var left_eye_yaw: float = first_subject.packet.blendshapes_array[ARKitServer.BlendShape.LEFT_EYE_YAW]
+		var left_eye_pitch: float = first_subject.packet.blendshapes_array[ARKitServer.BlendShape.LEFT_EYE_PITCH]
+		var eyes_pos := Vector2(left_eye_yaw*PI/2, -left_eye_pitch*PI/2)
+		anim_tree.set('parameters/blend_position', eyes_pos)
 
 
 static func set_blend_shape(mesh_instance: MeshInstance3D, blendshape_name: String, blendshape_value: float) -> void:
-	var blend_shape_idx: int = mesh_instance.find_blend_shape_by_name(blendshape_name)
+	var new_name: String = lowercase_first_letter(blendshape_name)
+	var blend_shape_idx: int = mesh_instance.find_blend_shape_by_name(new_name)
 	if blend_shape_idx == -1:
+		push_warning("blendshape: ", new_name, " not found in node: ", mesh_instance)
 		return # Not found
 	mesh_instance.set_blend_shape_value(blend_shape_idx, blendshape_value)
 ```
+
+---
+# Documentation
 #### Blendshapes String enum: 
 ```gdscript
 # For better convenience, name your 3D model shapekeys correctly (PascalCase)

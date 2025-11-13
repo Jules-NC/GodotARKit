@@ -181,7 +181,7 @@ enum BlendShape {
 Developed for the Godot community by: **Jules Neghnagh--Chenavas**
 
 # Contributing
-Yes, I'm sure I made errors, especially on the UI. Didn't even test with more than one device.
+DO IT! I surely made errors, especially on the UI. Didn't even test with more than one device. It's also my first plugin.
 
 # License
 This addon has been released under the **MIT License**

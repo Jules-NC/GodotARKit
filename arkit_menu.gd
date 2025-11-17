@@ -1,6 +1,8 @@
 @tool
 extends HBoxContainer
 
+const arkit_autoload: String = "ARKitSingleton"
+
 static var BLENDSHAPE_NAMES: Array = [
 	"EyeBlinkLeft",
 	"EyeLookDownLeft",
@@ -87,10 +89,12 @@ var _selected_subject_id: String
 func _ready() -> void:
 	_subjects_list.clear()
 	_hide_subject()
-
-	ARKitSingleton.show_error.connect(_on_error_shown)
-	ARKitSingleton.add_subject.connect(_on_add_subject)
-	ARKitSingleton.remove_subject.connect(_on_remove_subject)
+	get_tree().root.get_node(arkit_autoload).show_error.connect(_on_error_shown)
+	get_tree().root.get_node(arkit_autoload).add_subject.connect(_on_add_subject)
+	get_tree().root.get_node(arkit_autoload).remove_subject.connect(_on_remove_subject)
+	#ARKitSingleton.show_error.connect(_on_error_shown)
+	#ARKitSingleton.add_subject.connect(_on_add_subject)
+	#ARKitSingleton.remove_subject.connect(_on_remove_subject)
 	
 	# Set blendshape progress bars and names into container
 	for i in len(BLENDSHAPE_NAMES):
@@ -103,11 +107,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if _selected_subject_id == "":
 		return
+	
 		
-	if not ARKitSingleton.has_subject(_selected_subject_id):
+	#if not ARKitSingleton.has_subject(_selected_subject_id):
+	if not get_tree().root.get_node(arkit_autoload).has_subject(_selected_subject_id):
 		return
-		
-	var subject: ARKitSubject = ARKitSingleton.get_subject(_selected_subject_id)
+	
+	var subject: ARKitSubject = get_tree().root.get_node(arkit_autoload).get_subject(_selected_subject_id)
+	#var subject: ARKitSubject = ARKitSingleton.get_subject(_selected_subject_id)
 	# Get the selected subject and display the ARKit packet info
 	if subject:
 		_set_subject_infos(subject)
@@ -120,9 +127,11 @@ func _process(delta: float) -> void:
 
 func _on_start_server_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		ARKitSingleton.start_server.emit()
+		get_tree().root.get_node(arkit_autoload).start_server.emit()
+		#ARKitSingleton.start_server.emit()
 	else:
-		ARKitSingleton.stop_server.emit()
+		get_tree().root.get_node(arkit_autoload).stop_server.emit()
+		#ARKitSingleton.stop_server.emit()
 		_shown_subjects.clear()
 		_subject_name_to_id.clear()
 		_subjects_list.clear()
@@ -141,7 +150,8 @@ func _on_server_port_text_submitted(new_text: String) -> void:
 			return
 		_hide_subject()
 		_start_server.button_pressed = false
-		ARKitSingleton.change_port.emit(new_text.to_int())
+		get_tree().root.get_node(arkit_autoload).change_port.emit(new_text.to_int())
+#		ARKitSingleton.change_port.emit(new_text.to_int())
 	else:
 		_error_display.text = "Enter a valid port number"
 

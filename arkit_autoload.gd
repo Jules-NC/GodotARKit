@@ -12,7 +12,9 @@ signal add_subject(s: ARKitSubject)
 signal remove_subject(s: ARKitSubject)
 signal select_subject(subject_device_id: String)
 
-var _server: ARKitServer = ARKitServer.new(11111)
+var _server: ARKitServer
+
+
 
 
 func has_subject_from_name(subject_name: String) -> bool:
@@ -47,18 +49,30 @@ func get_subject(device_id: String) -> ARKitSubject:
 
 
 func _ready() -> void:
+	_server = ARKitServer.new(11111)
+	_server.add_subject.connect(_on_server_add_subject)
+	_server.remove_subject.connect(_on_server_remove_subject)
+
 	change_port.connect(_on_change_port)
 	start_server.connect(_server.start)
 	stop_server.connect(_server.stop)
 
+func _on_server_add_subject(s: ARKitSubject):
+	self.add_subject.emit(s)
+
+func _on_server_remove_subject(s: ARKitSubject):
+	self.remove_subject.emit(s)
 
 func _process(delta: float) -> void:
-	_server.poll()
+	if is_instance_valid(_server):
+		_server.poll()
 
 
 func _exit_tree() -> void:
-	_server.stop()
+	if is_instance_valid(_server):
+		_server.stop()
 
 
 func _on_change_port(port: int) -> void:
-	_server.change_port(port)
+	if is_instance_valid(_server):
+		_server.change_port(port)

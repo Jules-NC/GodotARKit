@@ -1,3 +1,4 @@
+@tool
 class_name ARKitServer
 extends RefCounted
 
@@ -130,6 +131,9 @@ static var blendshape_string_mapping: Dictionary[int, String] = {
 }
 
 signal send_blendshapes(bl_floats: PackedFloat32Array)
+signal add_subject(s: ARKitSubject)
+signal remove_subject(s: ARKitSubject)
+
 
 var _server: UDPServer = UDPServer.new()
 var _port: int = 11111
@@ -160,7 +164,7 @@ func set_port(new_port: int) -> void:
 func stop() -> void:
 	_server.stop()
 	for subject in subjects.values():
-		ARKitSingleton.remove_subject.emit(subject)
+		self.remove_subject.emit(subject)
 	subjects.clear()
 
 
@@ -188,7 +192,7 @@ func poll() -> void:
 	if not subjects.has(arkit_packet.device_id):
 		var temp_subject: ARKitSubject = ARKitSubject.new(arkit_packet)
 		subjects[arkit_packet.device_id] = temp_subject
-		ARKitSingleton.add_subject.emit(temp_subject)
+		self.add_subject.emit(temp_subject)
 	else:
 		subjects.get(arkit_packet.device_id).update_packet(arkit_packet)
 	send_blendshapes.emit(arkit_packet.blendshapes_array)

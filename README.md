@@ -1,3 +1,4 @@
+![icon](./icons/icon.png)
 
 # GodotARKit: Real-time facial Mocap! 
 ![Godot](https://img.shields.io/badge/Godot-4.4%2B-blue) ![License](https://img.shields.io/badge/License-MIT-green.svg)

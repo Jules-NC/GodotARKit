@@ -3,7 +3,7 @@
 # GodotARKit: Real-time facial Mocap! 
 ![Godot](https://img.shields.io/badge/Godot-4.4%2B-blue) ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-GodotARKit is a Godot 4 plugin designed to stream real-time facial motion capture from an ARKit UDP stream. Download LiveLinkFace on your phone, and get access to all the blendshapes of your faces via a singleton. Also work in game.
+GodotARKit is a Godot 4 plugin designed to stream real-time facial motion capture from an ARKit UDP stream. Download LiveLinkFace on your phone, and get access to all the blendshapes of your face via a singleton. Also work in game.
 
 The blendshapes can be connected to your 3D model to animate them in real-time.
 

@@ -39,13 +39,10 @@ var neck_bone:int
 var base_neck_rot:Quaternion
 
 
-func _init() -> void:
-	# Start the server on the port of your choice
+func _ready() -> void:
 	ARKitSingleton._server.change_port(11111)
 	ARKitSingleton._server.start()
 
-
-func _ready() -> void:
 	neck_bone = skeleton.find_bone(neck_bone_name)
 	base_neck_rot = skeleton.get_bone_pose_rotation(neck_bone)
 
@@ -94,6 +91,12 @@ static func set_blend_shape(mesh_instance: MeshInstance3D, blendshape_name: Stri
 		push_warning("blendshape: ", new_name, " not found in node: ", mesh_instance)
 		return # Not found
 	mesh_instance.set_blend_shape_value(blend_shape_idx, blendshape_value)
+
+
+# Because the blendshapes names on Unreal seems to be Uppercased I used Upperased ones in my enums. Meta says that it's not uppercased, but LLF use Uppercased ones in the debug settings, what to do?
+static func lowercase_first_letter(text: String) -> String:
+	pass
+	
 ```
 
 # Documentation
